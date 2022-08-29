@@ -1,4 +1,5 @@
 import re
+import uuid
 
 from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin,
                                         UserManager)
@@ -7,6 +8,7 @@ from django.db import models
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True)
     username = models.CharField(
         'Apelido / Usuário', max_length=30, unique=True, validators=[
             validators.RegexValidator(

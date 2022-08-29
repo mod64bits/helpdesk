@@ -11,7 +11,7 @@ def create_slug(sender, instance, signal, *args, **kwargs):
         # salvar slug vazio
         if not getattr(instance, slug_name, None):
             # criar slug
-            slug = '%s-' % instance.id + slugify(getattr(instance, slug_from))
+            slug = f"{instance.id}-{slugify(getattr(instance, slug_from))}"
             # set slug
             setattr(instance, slug_name, slug)
             # save instance
