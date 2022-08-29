@@ -1,0 +1,35 @@
+<table id="customer-table" class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Nome Fantasia</th>
+        <th>CPF / CNPJ</th>
+        <th>Telefone</th>
+        <th>Tipo de Pessoa</th>
+        <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for customer in customers %}
+        <tr>
+            <td>
+                {{ customer.fantasy_name }}
+            </td>
+            <td>{{ customer.document }}</td>
+            <td>{{ customer.phone_number }}</td>
+            <td>
+                {% if customer.legal_person %}
+                    <span class="badge badge-danger">Pessoa Juridica</span>
+                {% else %}
+                    <span class="badge badge-success">Pessoa Fisica</span>
+                {% endif %}
+            </td>
+            <td>
+                <button type="button" class="update-book btn btn-sm btn-primary"
+                        data-form-url="{% url 'customers:customer_update' customer.id %}">
+                    <span class="fa fa-pencil"></span>
+                </button>
+            </td>
+        </tr>
+    {% endfor %}
+    </tfoot>
+</table>
